@@ -1,0 +1,33 @@
+@if (!loggedIn){
+<div id="loginFormParent" class="text-center">
+  <h2 class="py-1">- Log in -</h2>
+  <form action="" id="loginForm" #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="formGroup">
+      <input name="email" type="email" class="form-control" placeholder="E-mail" [(ngModel)]="userDataModel.email" required email #emailerr="ngModel">
+      @if (emailerr.invalid && (emailerr.dirty || emailerr.touched)){
+        <p class="formError">Invalid E-mail address format</p>
+      }
+      @else {
+        <p class="formError">&nbsp;</p>
+      }
+    </div>
+    <div class="formGroup">
+
+      <input name="pwd" type="password" class="form-control" minlength="6" placeholder="Password" [(ngModel)]="userDataModel.pwd" required #pwderr="ngModel" (input)="validatePassword()">        
+      @if ((!passwordValid || pwderr.errors) && (pwderr.dirty || pwderr.touched)){
+        <p *ngIf="pwderr.errors?.['minlength']" class="formError">Password must be at least 6 characters</p>
+        <p *ngIf="pwderr.errors?.['required']" class="formError">Password is required</p>
+        <p *ngIf="!passwordValid && !pwderr.errors?.['required']" class="formError">Password needs to contain at least one uppercase and lowercase letter and a number</p>
+      }
+      @else {
+        <p class="formError">&nbsp;</p>
+      }
+    </div>
+    <input type="submit" value="Log in" [disabled]="f.invalid" class="btn"/>
+  </form>
+</div>
+}
+@else{
+  {{navigateToSearchPage()}}
+}
+<router-outlet />

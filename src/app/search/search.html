@@ -1,0 +1,42 @@
+@if (loggedIn) {
+<div class="topBar">
+    <div class="contentDiv">
+        {{userEmail}}
+        <button type="button" class="btn" style="float: right;" (click)="logout()">Log out</button>
+    </div>
+</div>
+<div class="contentDiv">
+    <h3>Start typing a movie title:</h3>
+    <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()">
+    <div id="result" style="margin-top: 10px;">
+        @for (movie of movies; track movie.id){
+            <div class="movieRow row">
+                <div class="col-4">
+                    @if (movie.poster_path == null || movie.poster_path == "") {
+                        <img src="no-image.png" alt="" title="{{movie.title ?? movie.name}}">
+
+                    }
+                    @else{
+                        <img src="{{images_url}}{{movie.poster_path}}" alt="" title="{{movie.title ?? movie.name}}">
+                    }
+                </div>
+                <div class="col">
+                    <h3>{{movie.title ?? movie.name}}</h3>
+                    <p>Release date: {{(movie.release_date | date:'longDate') ?? "unknown" }}</p>
+                    Genre(s):
+                    <ul>
+                        @for (genre of movie.genre_ids; track genre){
+                            <li>{{get_genre(genre)}}</li>
+                        }
+                        @empty { <li>None</li> }
+                    </ul>
+                </div>
+            </div>
+        }
+        @empty {
+            <h6>No corresponding movies</h6>
+        }
+    </div>
+</div>
+} @else { {{logout()}} }
+<router-outlet/>
