@@ -1,0 +1,16 @@
+{
+    "LOGIN": "Log in",
+    "PASSWORD": "Password",
+    "EMAIL_ERR": "Invalid E-mail address format",
+    "PWD_ERR1": "Password must be at least 6 characters",
+    "PWD_ERR2": "Password is required",
+    "PWD_ERR3": "Password needs to contain at least one uppercase and lowercase letter and a number",
+    "LOGOUT": "Log out",
+    "SEARCHBAR_TITLE": "Start typing a movie title:",
+    "NOTFOUND": "No corresponding movies",
+    "RELEASEDATE": "Release date: ",
+    "GENRES": "Genre(s): ",
+    "OVERWIEV": "Overwiev: ",
+    "RUNTIME": "Runtime: ",
+    "COUNTRIES": "Production country/ies: "
+}

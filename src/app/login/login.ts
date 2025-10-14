@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { App } from '../app';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'login-root',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet, TranslatePipe],
   templateUrl: './login.html',
   styleUrl: '../app.scss'
 })

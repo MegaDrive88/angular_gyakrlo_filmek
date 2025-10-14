@@ -2,11 +2,11 @@
 <div class="topBar">
     <div class="contentDiv">
         {{userEmail}}
-        <button type="button" class="btn" style="float: right;" (click)="logout()">Log out</button>
+        <button type="button" class="btn" style="float: right;" (click)="logout()">{{"LOGOUT" | translate}}</button>
     </div>
 </div>
 <div class="contentDiv">
-    <h3>Start typing a movie title:</h3>
+    <h3>{{"SEARCHBAR_TITLE" | translate}}</h3>
     <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()" #movieInp="ngModel">
     <div id="result" style="margin-top: 10px;">
         @for (movie of movies; track movie.id){
@@ -21,22 +21,22 @@
                 </div>
                 <div class="col">
                     <h3>{{movie.title}}</h3>
-                    <p>Release date: {{(movie.release_date | date:'longDate') ?? "unknown" }}</p>
-                    Genre(s):
+                    <p>{{"RELEASEDATE" | translate}}{{(movie.release_date | date:'longDate') ?? "unknown" }}</p>
+                    {{"GENRES" | translate}}
                     <ul>
                         @for (genre of movie.genre_ids; track genre){
                             @if(getGenre(genre) != "no genre found"){
                                 <li>{{ getGenre(genre) }}</li>
                             }
                         }
-                        @empty { <li>None</li> }
+                        @empty { <li>-</li> }
                     </ul>
                 </div>
             </div>
         }
         @empty {
             @if ((movieInp.dirty || movieInp.touched) && movieTitle.length >= 3) {
-                <h6>No corresponding movies</h6>
+                <h6>{{"NOTFOUND" | translate}}</h6>
             }
         }
     </div>

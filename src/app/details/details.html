@@ -11,8 +11,8 @@
         <h4>{{ movie!.title }}</h4>
         <ul>
             <li>Overview:<br>{{movie!.overview}}</li>
-            <li>Genre(s): {{getNames(movie!.genres)}}</li>
-            <li>Release date: {{movie!.release_date}}</li>
+            <li>{{"GENRES" | translate}}{{getNames(movie!.genres)}}</li>
+            <li>{{"RELEASEDATE" | translate}}{{movie!.release_date}}</li>
             @if (movie!.imdb_id) {
                 <li><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb page</a></li>
             }

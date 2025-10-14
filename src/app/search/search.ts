@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { App } from '../app';
 import { Genre } from '../interfaces/movieDetails.interface';
 import Movie from '../interfaces/movie.interface';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'search-root',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet, TranslatePipe],
   templateUrl: './search.html',
   styleUrl: '../app.scss'
 })
@@ -24,7 +25,7 @@ export class Search extends App implements OnInit {
     protected onType(){
         if (this.movieTitle.length < 3) return
         setTimeout(() => {
-            this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${this.language}`)
+            this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language}`)
             .subscribe({
                 next: (data) => {
                     this.movies = (data.results as Movie[])
@@ -39,8 +40,9 @@ export class Search extends App implements OnInit {
     protected getGenre(id:number) : string{
         return (this.genres.find(x=> x.id == id) ?? {name:"no genre found"}).name
     }
-    ngOnInit(): void {
-        this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${this.language}`)
+    override ngOnInit(): void {
+        super.ngOnInit()
+        this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language}`)
         .subscribe(data => {
             this.genres = data.genres
         })

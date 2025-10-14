@@ -1,1 +1,5 @@
+<select (change)="switchLanguage($any($event.target).value)" [selectedIndex]="language == 'hu-HU'">
+    <option [value]="'en'">en</option>
+    <option [value]="'hu'">hu</option>
+</select>
 <router-outlet />

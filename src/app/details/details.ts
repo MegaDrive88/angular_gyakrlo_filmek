@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { App } from '../app';
 import { MovieDetails, Genre, ProductionCountry } from '../interfaces/movieDetails.interface';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'details-root',
-  imports: [CommonModule, FormsModule, RouterOutlet],
+  imports: [CommonModule, FormsModule, RouterOutlet, TranslatePipe],
   templateUrl: './details.html',
   styleUrl: '../app.scss'
 })
@@ -15,9 +16,12 @@ export class Details extends App implements OnInit{
     protected movieId=''
     protected movie:MovieDetails|undefined
     private activatedroute = inject(ActivatedRoute)
-    ngOnInit(): void {
+    override ngOnInit(): void {
+        super.ngOnInit()
+        console.log(App.language);
+        
         this.movieId = this.activatedroute.snapshot.paramMap.get('id')!
-        this.http.get<MovieDetails>(`${this.url}/movie/${this.movieId}?api_key=${this.api_key}&language=${this.language}`).subscribe(data=> {
+        this.http.get<MovieDetails>(`${this.url}/movie/${this.movieId}?api_key=${this.api_key}&language=${App.language}`).subscribe(data=> {
             this.movie = data
             this.cdr.detectChanges()           
         })

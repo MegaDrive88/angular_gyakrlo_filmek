@@ -1,0 +1,13 @@
+{
+    "LOGIN": "Bejelentkezés",
+    "PASSWORD": "Jelszó",
+    "EMAIL_ERR": "Helytelen E-mail cím formátum",
+    "PWD_ERR1": "A jelszó legalább 6 karakter hosszú kell legyen",
+    "PWD_ERR2": "A jelszó megadása kötelező",
+    "PWD_ERR3": "A jelszónak tartalmaznia kell egy kis- és nagybetűt valamint egy számot",
+    "LOGOUT": "Kijelentkezés",
+    "SEARCHBAR_TITLE": "Kezdje el egy film címét begépelni!",
+    "NOTFOUND": "Nincsenek a keresésnek megfelelő filmek",
+    "RELEASEDATE": "Megjelenési dátum: ",
+    "GENRES": "Műfaj(ok): "
+}
