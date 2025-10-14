@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { App } from '../app';
-import Movie from '../Interfaces/Movie';
-import { Genre } from '../Interfaces/MovieDetails';
+import { Genre } from '../interfaces/movieDetails.interface';
+import Movie from '../interfaces/movie.interface';
 
 @Component({
   selector: 'search-root',
@@ -23,22 +23,24 @@ export class Search extends App implements OnInit {
     private genres:Genre[] = []
     protected onType(){
         if (this.movieTitle.length < 3) return
-        this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}`)
-        .subscribe({
-            next: (data) => {
-                this.movies = (data.results as Movie[])
-                this.cdr.detectChanges()
-            },
-            error: (err) => {
-                console.error('Error: ', err);
-            }
-        });
+        setTimeout(() => {
+            this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${this.language}`)
+            .subscribe({
+                next: (data) => {
+                    this.movies = (data.results as Movie[])
+                    this.cdr.detectChanges()
+                },
+                error: (err) => {
+                    console.error('Error: ', err);
+                }
+            });
+        }, 500);
     }
-    protected get_genre(id:number) : string{
+    protected getGenre(id:number) : string{
         return (this.genres.find(x=> x.id == id) ?? {name:"no genre found"}).name
     }
     ngOnInit(): void {
-        this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}`)
+        this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${this.language}`)
         .subscribe(data => {
             this.genres = data.genres
         })

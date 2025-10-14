@@ -11,13 +11,15 @@
         <h4>{{ movie!.title }}</h4>
         <ul>
             <li>Overview:<br>{{movie!.overview}}</li>
-            <li>Genre(s): {{get_names(movie!.genres)}}</li>
+            <li>Genre(s): {{getNames(movie!.genres)}}</li>
             <li>Release date: {{movie!.release_date}}</li>
-            <li><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb page</a></li>
+            @if (movie!.imdb_id) {
+                <li><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb page</a></li>
+            }
             <li>Runtime: {{movie!.runtime}} minutes</li>
-            <li>Production country/ies: {{get_names(movie!.production_countries)}}</li>
-
+            <li>Production country/ies: {{getNames(movie!.production_countries)}}</li>
         </ul>
+        <button class="btn" (click)="router.navigateByUrl('search')">Back</button>
     </div>
 </div>
 <router-outlet/>

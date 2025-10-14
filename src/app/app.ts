@@ -18,5 +18,5 @@ export class App {
   protected readonly images_url = "https://image.tmdb.org/t/p/w300_and_h450_bestv2"
   protected http = inject(HttpClient);
   protected cdr = inject(ChangeDetectorRef)
-
+  protected language = "en-US" // hu-HU
 }

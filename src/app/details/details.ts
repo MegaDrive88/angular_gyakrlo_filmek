@@ -3,7 +3,7 @@ import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { App } from '../app';
-import { MovieDetails, Genre, ProductionCountry } from '../Interfaces/MovieDetails';
+import { MovieDetails, Genre, ProductionCountry } from '../interfaces/movieDetails.interface';
 
 @Component({
   selector: 'details-root',
@@ -17,12 +17,12 @@ export class Details extends App implements OnInit{
     private activatedroute = inject(ActivatedRoute)
     ngOnInit(): void {
         this.movieId = this.activatedroute.snapshot.paramMap.get('id')!
-        this.http.get<MovieDetails>(`${this.url}/movie/${this.movieId}?api_key=${this.api_key}`).subscribe(data=> {
+        this.http.get<MovieDetails>(`${this.url}/movie/${this.movieId}?api_key=${this.api_key}&language=${this.language}`).subscribe(data=> {
             this.movie = data
             this.cdr.detectChanges()           
         })
     }
-    protected get_names(genres: Genre[]|ProductionCountry[]){
+    protected getNames(genres: Genre[]|ProductionCountry[]){
         return genres.map(x=>x.name)
     }
 }

@@ -7,7 +7,7 @@
 </div>
 <div class="contentDiv">
     <h3>Start typing a movie title:</h3>
-    <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()">
+    <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()" #movieInp="ngModel">
     <div id="result" style="margin-top: 10px;">
         @for (movie of movies; track movie.id){
             <div class="movieRow row" data-id="{{movie.id}}" (click)="movieClicked(movie.id)">
@@ -25,8 +25,8 @@
                     Genre(s):
                     <ul>
                         @for (genre of movie.genre_ids; track genre){
-                            @if(get_genre(genre) != "no genre found"){
-                                <li>{{ get_genre(genre) }}</li>
+                            @if(getGenre(genre) != "no genre found"){
+                                <li>{{ getGenre(genre) }}</li>
                             }
                         }
                         @empty { <li>None</li> }
@@ -35,7 +35,9 @@
             </div>
         }
         @empty {
-            <h6>No corresponding movies</h6>
+            @if ((movieInp.dirty || movieInp.touched) && movieTitle.length >= 3) {
+                <h6>No corresponding movies</h6>
+            }
         }
     </div>
 </div>
