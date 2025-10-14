@@ -1,0 +1,23 @@
+<div class="h-100 w-100 p-4 row">
+    <div class="col-4 text-center">
+        @if (movie!.poster_path == null || movie!.poster_path == "") {
+            <img src="no-image.png" alt="" title="{{movie!.title}}">
+        }
+        @else{
+            <img src="{{images_url}}{{movie!.poster_path}}" alt="" title="{{movie!.title}}">
+        }
+    </div>
+    <div class="col">
+        <h4>{{ movie!.title }}</h4>
+        <ul>
+            <li>Overview:<br>{{movie!.overview}}</li>
+            <li>Genre(s): {{get_names(movie!.genres)}}</li>
+            <li>Release date: {{movie!.release_date}}</li>
+            <li><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb page</a></li>
+            <li>Runtime: {{movie!.runtime}} minutes</li>
+            <li>Production country/ies: {{get_names(movie!.production_countries)}}</li>
+
+        </ul>
+    </div>
+</div>
+<router-outlet/>

@@ -10,23 +10,24 @@
     <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()">
     <div id="result" style="margin-top: 10px;">
         @for (movie of movies; track movie.id){
-            <div class="movieRow row">
+            <div class="movieRow row" data-id="{{movie.id}}" (click)="movieClicked(movie.id)">
                 <div class="col-4">
                     @if (movie.poster_path == null || movie.poster_path == "") {
-                        <img src="no-image.png" alt="" title="{{movie.title ?? movie.name}}">
-
+                        <img src="no-image.png" alt="" title="{{movie.title}}">
                     }
                     @else{
-                        <img src="{{images_url}}{{movie.poster_path}}" alt="" title="{{movie.title ?? movie.name}}">
+                        <img src="{{images_url}}{{movie.poster_path}}" alt="" title="{{movie.title}}">
                     }
                 </div>
                 <div class="col">
-                    <h3>{{movie.title ?? movie.name}}</h3>
+                    <h3>{{movie.title}}</h3>
                     <p>Release date: {{(movie.release_date | date:'longDate') ?? "unknown" }}</p>
                     Genre(s):
                     <ul>
                         @for (genre of movie.genre_ids; track genre){
-                            <li>{{get_genre(genre)}}</li>
+                            @if(get_genre(genre) != "no genre found"){
+                                <li>{{ get_genre(genre) }}</li>
+                            }
                         }
                         @empty { <li>None</li> }
                     </ul>
