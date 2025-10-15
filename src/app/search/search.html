@@ -21,7 +21,7 @@
                 </div>
                 <div class="col">
                     <h3>{{movie.title}}</h3>
-                    <p>{{"RELEASEDATE" | translate}}{{(movie.release_date | date:'longDate') ?? "unknown" }}</p>
+                    <p>{{"RELEASEDATE" | translate}}{{(movie.release_date) ?? "-" }}</p>
                     {{"GENRES" | translate}}
                     <ul>
                         @for (genre of movie.genre_ids; track genre){

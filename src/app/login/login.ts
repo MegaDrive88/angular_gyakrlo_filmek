@@ -21,6 +21,7 @@ export class Login extends App {
                          /.*\d.*/.test(this.userDataModel.pwd) // számot tartalmaz
   }
   protected onSubmit(){
+    localStorage.setItem("movieTitle", "")
     localStorage.setItem("userEmail", this.userDataModel.email)
     this.loggedIn = true
   }
