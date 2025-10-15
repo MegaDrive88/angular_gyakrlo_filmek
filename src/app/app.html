@@ -1,5 +1,8 @@
-<select (change)="switchLanguage($any($event.target).value)" [selectedIndex]="language == 'hu-HU'" id="langSelector">
-    <option [value]="'en'">en</option>
-    <option [value]="'hu'">hu</option>
-</select>
+<div class="langSelectorParent">
+    <img src="/flag_{{language() == 'hu-HU' ? 'hu' : 'us'}}.png">
+    <select (change)="switchLanguage($any($event.target).value)" [selectedIndex]="language() == 'hu-HU'" id="langSelector" class="form-select">
+        <option [value]="'en'">en</option>
+        <option [value]="'hu'">hu</option>
+    </select>
+</div>
 <router-outlet />

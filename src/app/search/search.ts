@@ -26,7 +26,7 @@ export class Search extends App implements OnInit {
         localStorage.setItem("movieTitle", this.movieTitle)
         if (this.movieTitle.length < 3) return
         setTimeout(() => {
-            this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language}`)
+            this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language()}`)
             .subscribe({
                 next: (data) => {
                     this.movies = (data.results as Movie[])
@@ -42,7 +42,7 @@ export class Search extends App implements OnInit {
         return (this.genres.find(x=> x.id == id) ?? {name:"no genre found"}).name
     }
     private getAllGenres(){
-        this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language}`)
+        this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language()}`)
         .subscribe(data => {
             this.genres = data.genres
         })
@@ -53,6 +53,7 @@ export class Search extends App implements OnInit {
         document.querySelector("#langSelector")?.addEventListener("change", ()=>{
             this.getAllGenres()
             this.onType()
+            this.cdr.detectChanges()
         })
         this.onType()
     }

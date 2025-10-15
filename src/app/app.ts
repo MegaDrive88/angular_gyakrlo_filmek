@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, signal, inject, ChangeDetectorRef, OnInit, effect } from '@angular/core';
 import { RouterOutlet, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,7 @@ export class App implements OnInit{
   protected readonly images_url = "https://image.tmdb.org/t/p/w300_and_h450_bestv2"
   protected http = inject(HttpClient);
   protected cdr = inject(ChangeDetectorRef)
-  protected static language = localStorage.getItem("siteLanguage") == "hu" ? "hu-HU" : "en-US"
+  protected static language = signal(localStorage.getItem("siteLanguage") == "hu" ? "hu-HU" : "en-US")
   get language() {
     return App.language;
   }
@@ -33,10 +33,10 @@ export class App implements OnInit{
     this.translate.use(lang);
     switch(lang){
       case "hu":
-        App.language = "hu-HU"
+        App.language.set("hu-HU")
         break;
       case "en":
-        App.language = "en-US"
+        App.language.set("en-US")
         break;
     }
     localStorage.setItem("siteLanguage", lang)

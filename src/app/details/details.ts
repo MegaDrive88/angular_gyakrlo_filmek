@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, effect } from '@angular/core';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,14 +16,21 @@ export class Details extends App implements OnInit{
     protected movieId=''
     protected movie:MovieDetails|undefined
     private activatedroute = inject(ActivatedRoute)
+    constructor(){
+        super()
+        effect(() => {
+            this.getMovieDetails()            
+        })
+    }
     override ngOnInit(): void {
         super.ngOnInit()
-        console.log(App.language);
-        
+        this.getMovieDetails()
+    }
+    private getMovieDetails(){
         this.movieId = this.activatedroute.snapshot.paramMap.get('id')!
-        this.http.get<MovieDetails>(`${this.url}/movie/${this.movieId}?api_key=${this.api_key}&language=${App.language}`).subscribe(data=> {
+        this.http.get<MovieDetails>(`${this.url}/movie/${this.movieId}?api_key=${this.api_key}&language=${App.language()}`).subscribe(data=> {
             this.movie = data
-            this.cdr.detectChanges()           
+            this.cdr.detectChanges()
         })
     }
     protected getNames(genres: Genre[]|ProductionCountry[]){

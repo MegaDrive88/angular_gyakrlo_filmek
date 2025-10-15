@@ -22,6 +22,7 @@
                 <div class="col">
                     <h3>{{movie.title}}</h3>
                     <p>{{"RELEASEDATE" | translate}}{{(movie.release_date) ?? "-" }}</p>
+                    @if(movie.genre_ids.length > 0){
                     {{"GENRES" | translate}}
                     <ul>
                         @for (genre of movie.genre_ids; track genre){
@@ -29,8 +30,8 @@
                                 <li>{{ getGenre(genre) }}</li>
                             }
                         }
-                        @empty { <li>-</li> }
                     </ul>
+                    }
                 </div>
             </div>
         }

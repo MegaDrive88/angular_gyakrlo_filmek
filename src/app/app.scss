@@ -46,3 +46,18 @@ input[type="submit"], button{
         height: 300px;
     }
 }
+.langSelectorParent{
+    position: relative;
+    right: 10px;
+    width: 100px;
+    position: absolute;
+    top: 10px;
+    & img{
+        pointer-events: none;
+        width: 20px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+        left: 40px;
+    }
+}
