@@ -41,11 +41,18 @@ export class Search extends App implements OnInit {
     protected getGenre(id:number) : string{
         return (this.genres.find(x=> x.id == id) ?? {name:"no genre found"}).name
     }
-    override ngOnInit(): void {
-        super.ngOnInit()
+    private getAllGenres(){
         this.http.get<any>(`${this.url}/genre/movie/list?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language}`)
         .subscribe(data => {
             this.genres = data.genres
+        })
+    }
+    override ngOnInit(): void {
+        super.ngOnInit()
+        this.getAllGenres()
+        document.querySelector("#langSelector")?.addEventListener("change", ()=>{
+            this.getAllGenres()
+            this.onType()
         })
         this.onType()
     }
