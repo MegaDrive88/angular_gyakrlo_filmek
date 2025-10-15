@@ -10,16 +10,16 @@
     <div class="col">
         <h4>{{ movie!.title }}</h4>
         <ul>
-            <li>Overview:<br>{{movie!.overview}}</li>
+            <li>{{"OVERVIEW" | translate}}<br>{{movie!.overview}}</li>
             <li>{{"GENRES" | translate}}{{getNames(movie!.genres)}}</li>
             <li>{{"RELEASEDATE" | translate}}{{movie!.release_date}}</li>
             @if (movie!.imdb_id) {
-                <li><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb page</a></li>
+                <li><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb {{"PAGE" | translate}}</a></li>
             }
-            <li>Runtime: {{movie!.runtime}} minutes</li>
-            <li>Production country/ies: {{getNames(movie!.production_countries)}}</li>
+            <li>{{"RUNTIME" | translate}}{{movie!.runtime}} {{"MINS" | translate}}</li>
+            <li>{{"COUNTRIES" | translate}}{{getNames(movie!.production_countries)}}</li>
         </ul>
-        <button class="btn" (click)="router.navigateByUrl('search')">Back</button>
+        <button class="btn" (click)="router.navigateByUrl('search')">{{"BACK" |translate}}</button>
     </div>
 </div>
 <router-outlet/>

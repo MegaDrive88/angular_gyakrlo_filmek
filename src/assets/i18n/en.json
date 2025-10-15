@@ -10,7 +10,11 @@
     "NOTFOUND": "No corresponding movies",
     "RELEASEDATE": "Release date: ",
     "GENRES": "Genre(s): ",
-    "OVERWIEV": "Overwiev: ",
+    "OVERVIEW": "Overview: ",
     "RUNTIME": "Runtime: ",
-    "COUNTRIES": "Production country/ies: "
+    "COUNTRIES": "Production country/ies: ",
+    "MINS": "Minutes",
+    "PAGE": "page",
+    "BACK": "Back"
+
 }

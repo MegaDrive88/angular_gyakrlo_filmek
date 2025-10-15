@@ -15,7 +15,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class Search extends App implements OnInit {
     protected userEmail = localStorage.getItem("userEmail")
-    protected movieTitle = ""
+    protected movieTitle = localStorage.getItem("movieTitle") ?? ""
     protected logout(){
         localStorage.removeItem("userEmail")
         this.router.navigateByUrl("")
@@ -23,6 +23,7 @@ export class Search extends App implements OnInit {
     protected movies:Movie[] = []
     private genres:Genre[] = []
     protected onType(){
+        localStorage.setItem("movieTitle", this.movieTitle)
         if (this.movieTitle.length < 3) return
         setTimeout(() => {
             this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language}`)
@@ -46,6 +47,7 @@ export class Search extends App implements OnInit {
         .subscribe(data => {
             this.genres = data.genres
         })
+        this.onType()
     }
     protected movieClicked(movieId :number){
         this.router.navigateByUrl(`details/${movieId}`)
