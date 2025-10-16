@@ -17,6 +17,6 @@
     "PAGE": "page",
     "BACK": "Back",
     "YEAR": "Year of release",
-    "LANGUAGES": "Original language(s)"
-
+    "LANGUAGES": "Original language(s)",
+    "FAVORITES": "Favorites only"
 }

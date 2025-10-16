@@ -66,12 +66,28 @@ input[type="submit"], button{
 .favorite_toggle{
     background: transparent !important;
     position: absolute;
-    top: 0;
-    right: 30px;
+    top: 5px;
+    right: 60px;
     width: 25px;
     & img{
         width: 25px;
         height: 25px;
     }
     z-index: 2;
+}
+@media screen and (max-width: 992px){
+    #loginFormParent{
+        width: 60%;
+    }
+    .contentDiv{
+        max-width: 700px !important;
+    }
+    .favorite_toggle{
+        right: 30px;
+    }
+}
+@media screen and (max-width: 768px){
+    .contentDiv{
+        max-width: 500px !important;
+    }
 }

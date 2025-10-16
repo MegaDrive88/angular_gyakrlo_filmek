@@ -32,7 +32,6 @@ export class Search extends App implements OnInit, AfterViewInit {
     protected releaseYear:number|Number|undefined
     protected onType(){
         localStorage.setItem("movieTitle", this.movieTitle)
-        if (this.movieTitle.length < 3) return
         setTimeout(() => {
             this.http.get<any>(
                 `${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language()}${this.releaseYear != null && this.releaseYear != undefined ? `&primary_release_year=${this.releaseYear}` : ""}`)

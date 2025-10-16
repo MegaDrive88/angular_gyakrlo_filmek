@@ -9,10 +9,10 @@
     <h3>{{"SEARCHBAR_TITLE" | translate}}</h3>
     <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()" #movieInp="ngModel">
     <div class="row my-3" style="max-height: 40px; overflow: visible;">
-        <div class="col">
-            <input type="number" class="form-control" name="" id="" min="1800" max="{{currYear}}" placeholder="{{'YEAR' |translate}}" [(ngModel)]="releaseYear" (ngModelChange)="onType()">
+        <div class="col-12 col-md-4">
+            <input type="number" class="form-control" name="" id="" min="1800" max="{{currYear}}" placeholder="{{'YEAR' |translate}}" [(ngModel)]="releaseYear" (ngModelChange)="onType()" style="margin-bottom: 20px;">
         </div>
-        <div class="col">
+        <div class="col-12 col-md-4">
             <mat-form-field class="w-100">
                 <mat-select multiple class="form-select" placeholder="{{'GENRES' | translate}}" (valueChange)="onType()" #genreSelector>
                     @for (genre of genres; track genre.id) {
@@ -21,7 +21,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="col">
+        <div class="col-12 col-md-4">
             <mat-form-field class="w-100">
                 <mat-select multiple class="form-select" placeholder="{{'LANGUAGES' | translate}}" (valueChange)="onType()" #languageSelector>
                     @for (language of this.languages; track language.iso_639_1) {
@@ -31,11 +31,11 @@
             </mat-form-field>
         </div>
     </div>
-    <input type="checkbox" class="form-check-input" [(ngModel)]="favoritesOnly" (ngModelChange)="onType()"> Favorites only
+    <input type="checkbox" class="form-check-input" [(ngModel)]="favoritesOnly" (ngModelChange)="onType()"> {{"FAVORITES" |translate}}
     <div id="result" style="margin-top: 10px;">
         @for (movie of movies; track movie.id){
             <div class="movieRow row" data-id="{{movie.id}}" (click)="movieClicked(movie.id)">
-                <div class="col-4" style="position: relative;">
+                <div class="col-md-4 col-12 text-center" style="position: relative;">
                     <button class="favorite_toggle" (click)="toggleFavorite(movie.id, $event)">
                         <img src="{{!favoriteMovies.includes(movie.id) ? 'empty' : 'full'}}_heart.png" alt="">
                     </button>
