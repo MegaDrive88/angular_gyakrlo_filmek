@@ -10,7 +10,7 @@
     <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()" #movieInp="ngModel">
     <div class="row my-3" style="max-height: 40px; overflow: visible;">
         <div class="col">
-            <input type="number" class="form-control" name="" id="" min="1800" max="{{2025}}" placeholder="{{'YEAR' |translate}}">
+            <input type="number" class="form-control" name="" id="" min="1800" max="{{2025}}" placeholder="{{'YEAR' |translate}}" [(ngModel)]="releaseYear">
         </div>
         <div class="col">
             <mat-form-field class="w-100">
@@ -24,8 +24,8 @@
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-select multiple class="form-select" placeholder="{{'LANGUAGES' | translate}}" (valueChange)="onType()" #languageSelector>
-                    @for (language of "abcdefg"; track language) {
-                    <mat-option [value]="language">{{language}}</mat-option>
+                    @for (language of this.languages; track language.iso_639_1) {
+                    <mat-option [value]="language.iso_639_1">{{language.english_name}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
@@ -60,7 +60,7 @@
             </div>
         }
         @empty {
-            @if ((movieInp.dirty || movieInp.touched) && movieTitle.length >= 3) {
+            @if (movieTitle.length >= 3) {
                 <h6>{{"NOTFOUND" | translate}}</h6>
             }
         }

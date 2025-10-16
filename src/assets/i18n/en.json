@@ -16,5 +16,7 @@
     "MINS": "Minutes",
     "PAGE": "page",
     "BACK": "Back",
-    "YEAR": "Year of release"
+    "YEAR": "Year of release",
+    "LANGUAGES": "Original language(s)"
+
 }
