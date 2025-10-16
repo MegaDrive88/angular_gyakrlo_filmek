@@ -46,6 +46,7 @@ input[type="submit"], button{
     & img{
         height: 300px;
     }
+    z-index: 1;
 }
 .langSelectorParent{
     position: relative;
@@ -61,4 +62,16 @@ input[type="submit"], button{
         transform: translate(0,-50%);
         left: 40px;
     }
+}
+.favorite_toggle{
+    background: transparent !important;
+    position: absolute;
+    top: 0;
+    right: 30px;
+    width: 25px;
+    & img{
+        width: 25px;
+        height: 25px;
+    }
+    z-index: 2;
 }

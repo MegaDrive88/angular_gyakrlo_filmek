@@ -20,6 +20,8 @@ export class App implements OnInit{
   protected http = inject(HttpClient);
   protected cdr = inject(ChangeDetectorRef)
   protected static language = signal(localStorage.getItem("siteLanguage") == "hu" ? "hu-HU" : "en-US")
+  protected favoriteMovies:number[] = JSON.parse(localStorage.getItem("favorite_movies") ?? "[]")
+  protected favoritesOnly = false
   get language() {
     return App.language;
   }

@@ -10,7 +10,7 @@
     <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()" #movieInp="ngModel">
     <div class="row my-3" style="max-height: 40px; overflow: visible;">
         <div class="col">
-            <input type="number" class="form-control" name="" id="" min="1800" max="{{2025}}" placeholder="{{'YEAR' |translate}}" [(ngModel)]="releaseYear">
+            <input type="number" class="form-control" name="" id="" min="1800" max="{{currYear}}" placeholder="{{'YEAR' |translate}}" [(ngModel)]="releaseYear" (ngModelChange)="onType()">
         </div>
         <div class="col">
             <mat-form-field class="w-100">
@@ -31,11 +31,14 @@
             </mat-form-field>
         </div>
     </div>
-    <input type="checkbox" class="form-check-input">
+    <input type="checkbox" class="form-check-input" [(ngModel)]="favoritesOnly" (ngModelChange)="onType()"> Favorites only
     <div id="result" style="margin-top: 10px;">
         @for (movie of movies; track movie.id){
             <div class="movieRow row" data-id="{{movie.id}}" (click)="movieClicked(movie.id)">
-                <div class="col-4">
+                <div class="col-4" style="position: relative;">
+                    <button class="favorite_toggle" (click)="toggleFavorite(movie.id, $event)">
+                        <img src="{{!favoriteMovies.includes(movie.id) ? 'empty' : 'full'}}_heart.png" alt="">
+                    </button>
                     @if (movie.poster_path == null || movie.poster_path == "") {
                         <img src="no-image.png" alt="" title="{{movie.title}}">
                     }

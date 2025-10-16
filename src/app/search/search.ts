@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { App } from '../app';
 import { Genre } from '../interfaces/movieDetails.interface';
 import Movie from '../interfaces/movie.interface';
@@ -23,6 +23,7 @@ export class Search extends App implements OnInit, AfterViewInit {
         localStorage.removeItem("userEmail")
         this.router.navigateByUrl("")
     }
+    protected currYear = new Date().getFullYear()
     protected movies:Movie[] = []
     protected genres:Genre[] = []
     protected languages:Language[] = []
@@ -33,7 +34,8 @@ export class Search extends App implements OnInit, AfterViewInit {
         localStorage.setItem("movieTitle", this.movieTitle)
         if (this.movieTitle.length < 3) return
         setTimeout(() => {
-            this.http.get<any>(`${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language()}`)
+            this.http.get<any>(
+                `${this.url}/search/movie?api_key=${this.api_key}&include_adult=false&query=${this.movieTitle}&language=${App.language()}${this.releaseYear != null && this.releaseYear != undefined ? `&primary_release_year=${this.releaseYear}` : ""}`)
             .subscribe({
                 next: (data) => {
                     this.movies = (data.results as Movie[])
@@ -41,9 +43,10 @@ export class Search extends App implements OnInit, AfterViewInit {
                         this.movies = this.movies.filter(x => 
                             x.genre_ids.some(y=> this.genreSelector.value.includes(y))
                         )
-                    
                     if(this.languageSelector.value.length > 0)
                         this.movies = this.movies.filter(x => this.languageSelector.value.includes(x.original_language))
+                    if(this.favoritesOnly)
+                        this.movies = this.movies.filter(x => this.favoriteMovies.includes(x.id))
                     this.cdr.detectChanges()
                 },
                 error: (err) => {
@@ -84,5 +87,13 @@ export class Search extends App implements OnInit, AfterViewInit {
     }
     protected movieClicked(movieId :number){
         this.router.navigateByUrl(`details/${movieId}`)
+    }
+    protected toggleFavorite(movieId:number, event:MouseEvent){
+        event.stopPropagation()
+        if(!this.favoriteMovies.includes(movieId))
+            this.favoriteMovies.push(movieId)
+        else            
+            this.favoriteMovies = this.favoriteMovies.filter(x=> x != movieId)
+        localStorage.setItem("favorite_movies", JSON.stringify(this.favoriteMovies))        
     }
 }
