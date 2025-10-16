@@ -15,7 +15,7 @@
 html {
   @include mat.theme((
     color: (
-      primary: mat.$cyan-palette,
+      primary: mat.$blue-palette,
       tertiary: mat.$orange-palette,
     ),
     typography: Roboto,
@@ -43,3 +43,14 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-mdc-form-field-infix, .mat-mdc-text-field-wrapper{
+  padding: 0 !important;
+  background: transparent !important;
+}
+.mdc-line-ripple{
+  display: none;
+}
+.mat-mdc-form-field-focus-overlay{
+  background: transparent !important;
+}

@@ -9,11 +9,12 @@
     "SEARCHBAR_TITLE": "Start typing a movie title:",
     "NOTFOUND": "No corresponding movies",
     "RELEASEDATE": "Release date: ",
-    "GENRES": "Genre(s): ",
+    "GENRES": "Genre(s)",
     "OVERVIEW": "Overview: ",
     "RUNTIME": "Runtime: ",
     "COUNTRIES": "Production country/ies: ",
     "MINS": "Minutes",
     "PAGE": "page",
-    "BACK": "Back"
+    "BACK": "Back",
+    "YEAR": "Year of release"
 }

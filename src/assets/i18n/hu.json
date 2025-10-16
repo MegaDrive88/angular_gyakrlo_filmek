@@ -9,11 +9,12 @@
     "SEARCHBAR_TITLE": "Kezdje el egy film címét begépelni!",
     "NOTFOUND": "Nincsenek a keresésnek megfelelő filmek",
     "RELEASEDATE": "Megjelenési dátum: ",
-    "GENRES": "Műfaj(ok): ",
+    "GENRES": "Műfaj(ok)",
     "OVERVIEW": "Áttekintés: ",
     "RUNTIME": "Hossz: ",
     "COUNTRIES": "Gyártó ország(ok): ",
     "MINS": "Perc",
     "PAGE": "oldal",
-    "BACK": "Vissza"
+    "BACK": "Vissza",
+    "YEAR": "Kiadás éve"
 }

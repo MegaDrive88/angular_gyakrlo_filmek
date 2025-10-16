@@ -11,7 +11,7 @@
         <h4>{{ movie!.title }}</h4>
         <ul>
             <li *ngIf="movie!.overview">{{"OVERVIEW" | translate}}<br>{{movie!.overview}}</li>
-            <li *ngIf="movie!.genres.length > 0">{{"GENRES" | translate}}{{getNames(movie!.genres).join(", ")}}</li>
+            <li *ngIf="movie!.genres.length > 0">{{"GENRES" | translate}}: {{getNames(movie!.genres).join(", ")}}</li>
             <li *ngIf="movie!.release_date">{{"RELEASEDATE" | translate}}{{movie!.release_date}}</li>
             <li *ngIf="movie!.imdb_id"><a href="https://imdb.com/title/{{movie!.imdb_id}}" target="_blank">IMDb {{"PAGE" | translate}}</a></li>
             <li *ngIf="movie!.runtime">{{"RUNTIME" | translate}}{{movie!.runtime}} {{"MINS" | translate}}</li>
