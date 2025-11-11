@@ -75,9 +75,12 @@ input[type="submit"], button{
     }
     z-index: 2;
 }
+#emailLineBreak{
+    display: none;
+}
 @media screen and (max-width: 992px){
     #loginFormParent{
-        width: 60%;
+        width: 70%;
     }
     .contentDiv{
         max-width: 700px !important;
@@ -85,9 +88,26 @@ input[type="submit"], button{
     .favorite_toggle{
         right: 30px;
     }
+    #detailsContainer{
+        margin-top: 50px;
+    }
+    .topBar{
+        height: 170px;
+    }
 }
 @media screen and (max-width: 768px){
     .contentDiv{
         max-width: 500px !important;
+    }
+    .largeMoviePoster{
+        width: 110%;
+        margin-bottom: 10px;
+    }
+    #logoutBtn{
+        margin-top: 10px;
+        float: left !important;
+    }
+    #emailLineBreak{
+        display: block;
     }
 }

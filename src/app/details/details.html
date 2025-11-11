@@ -1,10 +1,10 @@
-<div class="h-100 w-100 p-4 row">
+<div class="h-100 w-100 p-4 row" id="detailsContainer">
     <div class="col-lg-4 col-12 text-center">
         @if (movie!.poster_path == null || movie!.poster_path == "") {
-            <img src="no-image.png" alt="" title="{{movie!.title}}">
+            <img src="no-image.png" alt="" title="{{movie!.title}}" class="largeMoviePoster">
         }
         @else{
-            <img src="{{images_url}}{{movie!.poster_path}}" alt="" title="{{movie!.title}}">
+            <img src="{{images_url}}{{movie!.poster_path}}" alt="" title="{{movie!.title}}" class="largeMoviePoster">
         }
     </div>
     <div class="col">

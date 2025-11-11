@@ -1,14 +1,14 @@
 @if (loggedIn) {
 <div class="topBar">
     <div class="contentDiv">
-        {{userEmail}}
-        <button type="button" class="btn" style="float: right;" (click)="logout()">{{"LOGOUT" | translate}}</button>
+        {{userEmail}} <br id="emailLineBreak">
+        <button type="button" class="btn" style="float: right;" (click)="logout()" id="logoutBtn">{{"LOGOUT" | translate}}</button>
     </div>
 </div>
 <div class="contentDiv">
     <h3>{{"SEARCHBAR_TITLE" | translate}}</h3>
     <input type="text" [(ngModel)]="movieTitle" class="form-control" (ngModelChange)="onType()" #movieInp="ngModel">
-    <div class="row my-3" style="max-height: 40px; overflow: visible;">
+    <div class="row my-3" style=" overflow: visible;">
         <div class="col-12 col-md-4">
             <input type="number" class="form-control" name="" id="" min="1800" max="{{currYear}}" placeholder="{{'YEAR' |translate}}" [(ngModel)]="releaseYear" (ngModelChange)="onType()" style="margin-bottom: 20px;">
         </div>
