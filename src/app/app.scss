@@ -24,7 +24,7 @@ input[type="submit"], button{
     border: 0;
 }
 .topBar{
-    height: 120px;
+    height: 125px;
     border-bottom: 1px solid $bootstrap-blue;
     margin-bottom: 5px;
     font-size: large;
@@ -109,5 +109,11 @@ input[type="submit"], button{
     }
     #emailLineBreak{
         display: block;
+    }
+    .movieRow{
+        & img:not(.favorite_toggle img){
+            width: 100%;
+            height: auto;
+        }
     }
 }
